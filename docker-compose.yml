@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  backend:
+    build: ./back-end
+    restart: unless-stopped
+    env_file: ./back-end/.env
+    ports:
+      - '8800:8800'
+    volumes:
+      - ./back-end:/app
+    depends_on:
+      - mongodb
+    networks:
+      - backend
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - db:/data/db
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  db:
