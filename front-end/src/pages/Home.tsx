@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {Flex, Box, Text} from 'rebass';
 import Music from '../components/Music';
 import {css} from '@emotion/react';
+import { Analytics } from "@vercel/analytics/react"
 //
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../state/store';
@@ -69,6 +70,7 @@ function Home() {
               ))}
         </Box>
       </Flex>
+      <Analytics />
     </>
   );
 }
