@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../state/store';
 import {useNavigate} from 'react-router';
 import ErrorMessage from '../components/ErrorMessage';
+import { Analytics } from "@vercel/analytics/react"
+
 const StyledInput = styled.input`
   padding: 10px;
   /* Add playful spirit: */
@@ -193,7 +195,8 @@ function AddSongPage() {
     }, 8000);
   };
 
-  return (
+  return (<>
+  
     <Flex
       flexDirection={'column'}
       style={{
@@ -311,6 +314,8 @@ function AddSongPage() {
         </Flex>
       </StyledForm>
     </Flex>
+    <Analytics />
+    </>
   );
 }
 

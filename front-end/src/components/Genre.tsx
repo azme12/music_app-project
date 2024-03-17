@@ -2,23 +2,26 @@ import React from 'react'
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Flex, Box, Text } from "rebass";
+import { Analytics } from "@vercel/analytics/react"
+
 
 type reactProps = {
     name: string;
     imgUrl: string;
-}
-
+  }
+  
 const Genre: React.FC<reactProps> = ({name, imgUrl}) => {
-    
+  
   const genreStylesM = css`
     width: 200px;
     
     cursor: pointer;
     text-decoration: none;
     transition: .4s;
-  `;
+    `;
 
   return (
+    <>
     <Flex
         flexDirection={"column"}
         css={genreStylesM.styles}
@@ -41,8 +44,11 @@ const Genre: React.FC<reactProps> = ({name, imgUrl}) => {
           >
             <Text fontSize={3} fontWeight="bold">{name}</Text>
           </Flex>
+          
         </Box>
       </Flex>
+      <Analytics />
+      </>
   )
 }
 

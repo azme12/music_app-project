@@ -3,6 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../../state/store';
 import styled from 'styled-components';
 import {Box, Flex, Text} from 'rebass';
+import { Analytics } from "@vercel/analytics/react"
+
 
 const StatsContainer = styled.div`
   display: flex;
@@ -117,6 +119,7 @@ const Statistics = () => {
           </StyledBox>
         </Flex>
       </Flex>
+      <Analytics />
     </>
   );
 };
