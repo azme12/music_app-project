@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react"
 //
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../state/store';
+import React from 'react';
 //
 interface Song {
   _id: string;
@@ -17,7 +18,7 @@ interface Song {
   publicId?: string;
   userId?: string; // Make this property optional
   likes?: string[]; // Make this property optional
-  __v?: Number;
+  __v?: number;
 
   imageUrl?: string; // Make this property optional
 }

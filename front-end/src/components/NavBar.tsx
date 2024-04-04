@@ -1,14 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Flex, Box, Text } from "rebass";
+import { Flex, Box } from "rebass";
 
-import { BsFillMenuButtonWideFill } from "react-icons/bs";
+import { IoMenu } from "react-icons/io5";
 import { TbMusicSearch } from "react-icons/tb";
 import { useLocation } from "react-router";
 import SmallScreenSidebar from "./SmallScreen/SmallScreenSidebar";
 import { useState } from "react";
+import React from "react";
 
-const MenuIcon = styled(BsFillMenuButtonWideFill)`
+const MenuIcon = styled(IoMenu)`
   cursor: pointer;
   font-size: 50px;
 `;

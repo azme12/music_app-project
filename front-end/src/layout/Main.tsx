@@ -2,26 +2,14 @@ import {Outlet} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 
 import {css} from '@emotion/react';
-import styled from '@emotion/styled';
-import {Flex, Box, Text} from 'rebass';
+import {Flex, Box} from 'rebass';
 
 import NavBar from '../components/NavBar';
 import {RootState} from '../state/store';
 import {useSelector} from 'react-redux';
 import Player from '../components/Player';
+import React from 'react';
 
-interface Song {
-  _id: string;
-  title: string;
-  artist: string;
-  album: string;
-  genre: string;
-  songUrl: string;
-  publicId?: string;
-
-  likes: string[];
-  __v?: Number;
-}
 export default function Main() {
   const data = useSelector((state: RootState) => state.songs.songs);
   const MainStyle = css`
@@ -31,12 +19,6 @@ export default function Main() {
       padding: 0px;
       padding-right: 15px;
     }
-  `;
-  const contentStyle = css`
-    color: red;
-    height: 200vh;
-
-    border-radius: 15px;
   `;
 
   return (

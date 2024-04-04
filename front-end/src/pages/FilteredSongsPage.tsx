@@ -1,11 +1,10 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import { Flex, Box, Text } from "rebass";
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import Music from "../components/Music";
+import React from "react";
 
 interface Song {
   album: string;

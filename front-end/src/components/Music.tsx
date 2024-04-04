@@ -4,20 +4,15 @@ import {FaPlay} from 'react-icons/fa';
 import {FaPause} from 'react-icons/fa6';
 import {MdOutlineEdit} from 'react-icons/md';
 import {MdDelete} from 'react-icons/md';
-import {FaRegCircleCheck} from 'react-icons/fa6';
 
 import {css, keyframes} from '@emotion/react';
 import styled from '@emotion/styled';
 
-import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../state/store';
 import SuccessToast from './Toasts/SuccessToast';
-import {
-  setOpenDeleteModal,
-  setmarkDeletedItem,
-} from '../state/songs/songsSlice';
 import FailedToast from './Toasts/FailedToast';
 
 import {pauseSong, playSong, setCurrentSong} from '../state/songs/PlayerSlcie';
@@ -50,7 +45,6 @@ type myComponentProp = {
 const Music: React.FC<myComponentProp> = ({
   album,
   artist,
-  genre,
   songUrl,
   date,
   title,
@@ -269,15 +263,17 @@ to {
     font-weight: bold;
   `;
   const handlePlayPause = () => {
-    if (isPlaying && currentSong === songUrl) {
+    if (isPlaying && songUrl && currentSong === songUrl) {
       // Only set previous state if it was previously playing
       if (previousPlayingState) {
         setPreviousPlayingState(false);
       }
       dispatch(pauseSong());
     } else {
-      setPreviousPlayingState(isPlaying); // Remember the previous state before playing
-      dispatch(setCurrentSong({title: title, songUrl: songUrl}));
+      if (songUrl) {
+    setPreviousPlayingState(isPlaying); // Remember the previous state before playing
+    dispatch(setCurrentSong({title: title, songUrl: songUrl}));
+    }
       dispatch(playSong());
     }
   };
@@ -379,7 +375,7 @@ to {
               <StyledContent onClick={(e) => e.stopPropagation()}>
                 <div
                   //to={`/editSong/${_id}`}
-                  onClick={(event) => handleDeleteClick(_id)}
+                  onClick={() => handleDeleteClick(_id)}
                   style={{textDecoration: 'none', color: '#1f3044'}}
                 >
                   <Flex

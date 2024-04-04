@@ -1,26 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {RootState} from '../../state/store';
+import React from 'react';
+import {useSelector} from 'react-redux';
+import {RootState} from '../state/store';
 import styled from 'styled-components';
 import {Box, Flex, Text} from 'rebass';
 import { Analytics } from "@vercel/analytics/react"
 
 
-const StatsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  animation: fadeIn 1s;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
 const StyledBox = styled(Box)`
   background: #f8f9fa;
   border-radius: 5px;
@@ -34,7 +19,6 @@ const StyledText = styled(Text)`
   font-weight: bold;
 `;
 const Statistics = () => {
-  const dispatch = useDispatch();
   const stats = useSelector((state: RootState) => state.stats);
 
   return (

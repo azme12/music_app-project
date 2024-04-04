@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
 import { BiCategory } from "react-icons/bi";
 import { IoHome } from "react-icons/io5";
-import { VscGraphLine } from "react-icons/vsc";
-import { BsMenuButtonWideFill } from "react-icons/bs";
-import { IoIosClose } from "react-icons/io";
+import { MdBarChart } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 // Styled component should be defined outside of the component function
 import { css } from "@emotion/react";
@@ -11,6 +8,7 @@ import styled from "@emotion/styled";
 import {Flex, Box, Text} from "rebass";
 
 import { Link, useLocation } from "react-router-dom";
+import React from "react";
 //
 //import { Outlet } from "react-router-dom";
 
@@ -22,7 +20,7 @@ const StyledIcon2 = styled(BiCategory)`
   margin-right: 20px;
   font-size: 50px;
 `;
-const StyledIcon3 = styled(VscGraphLine)`
+const StyledIcon3 = styled(MdBarChart)`
   margin-right: 20px;
   font-size: 50px;
 `;
@@ -30,19 +28,6 @@ const StyledIcon4 = styled(IoIosAddCircle)`
   margin-right: 20px;
   font-size: 50px;
 `;
-const MenuIcon = styled(BsMenuButtonWideFill)`
-cursor: pointer;
-left: 40px;
-top: 25px;
-font-size: 35px;
-`;
-const CloseIcon = styled(IoIosClose)`
-
-font-size: 40px;
-cursor: pointer;
-transition: all .5s ease;
-`;
-
 export default function SideBar() {
   const location = useLocation()
     const sideBarStyle = css`

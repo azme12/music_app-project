@@ -1,10 +1,10 @@
 import { css } from "@emotion/react";
+import React from "react";
 import { Flex, Box, Text } from "rebass";
 
 const AllGenresTitle = () => {
   const titleStyle = css`
     width: 100%;
-    
     border-radius: 10px;
     background: #a8bcc3;
     color: #1f3044;
@@ -13,7 +13,7 @@ const AllGenresTitle = () => {
     <Flex
       flexDirection="row"
       justifyContent="space-between"
-      css={titleStyle.styles}
+      css={titleStyle}
       p={2}
     >
       <Box>

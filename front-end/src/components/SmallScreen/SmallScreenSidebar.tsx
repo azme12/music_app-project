@@ -1,6 +1,6 @@
 import { BiCategory } from "react-icons/bi";
 import { IoIosClose, IoMdHome } from "react-icons/io";
-import { IoStatsChart } from "react-icons/io5";
+import { MdBarChart } from "react-icons/md";
 import { IoIosAddCircleOutline } from "react-icons/io";
 // Styled component should be defined outside of the component function
 import { css } from "@emotion/react";
@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import {Flex, Box, Text} from "rebass";
 
 import { Link, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 //
 //import { Outlet } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const StyledIcon2 = styled(BiCategory)`
   margin-right: 10px;
   font-size: 30px;
 `;
-const StyledIcon3 = styled(IoStatsChart)`
+const StyledIcon3 = styled(MdBarChart)`
   margin-right: 10px;
   font-size: 30px;
 `;

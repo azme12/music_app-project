@@ -1,10 +1,10 @@
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import { Flex, Box, Text } from "rebass";
 import Genre from "../components/Genre";
 
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import React from "react";
 
 type genre = {
   name: string;
@@ -14,37 +14,37 @@ const genres: genre[] = [
   {
     name: "country/Ethiopia",
     imgUrl:
-      "https://th.bing.com/th/id/OIP.gQTSRBvwGnns-qDT8v1AUgAAAA?rs=1&pid=ImgDetMain",
+      "https://i.ytimg.com/vi/4WqWqazH2po/maxresdefault.jpg",
   },
   {
     name: "Electronic",
     imgUrl:
-      "https://th.bing.com/th/id/R.b67b8ed89dcc6935fa1154af885b1ba7?rik=SWfbQ8M6IYYmPA&pid=ImgRaw&r=0",
+      "https://th.bing.com/th/id/R.188732cf7c554531bb37c2c2ca1cdfb2?rik=9H6z27KhLWiG0g&pid=ImgRaw&r=0",
   },
   {
     name: "Rap",
     imgUrl:
-      "https://th.bing.com/th/id/OIP.UOQd78CO_FcqDqvVppOuYgHaDx?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/R.0bc65d3c6c8668c2888e2bd61ba175b7?rik=EPFxkFMwDXnMZQ&pid=ImgRaw&r=0",
   },
   {
     name: "Pop",
     imgUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYYG7I2XLgRt4BFCHD9gyGAgJPbD3JdWRr3A&usqp=CAU",
+      "https://th.bing.com/th/id/R.031ca0831248088b4711e87f8839d39c?rik=xwyFAx3Rl79cxA&pid=ImgRaw&r=0",
   },
   {
     name: "Rock",
     imgUrl:
-      "https://th.bing.com/th/id/R.fcae5775a0bb7e5cd4aaff145ff7160e?rik=8QSI%2b61Y1zAIzA&pid=ImgRaw&r=0",
+      "https://th.bing.com/th/id/R.1073733133b0f07f13b3f066b773a7b3?rik=3u0%2b%2fkCFW5tl9A&pid=ImgRaw&r=0",
   },
   {
     name: "R&B",
     imgUrl:
-      "https://th.bing.com/th/id/OIP.YJ0AR2SsQVtKgTftLeYxcQHaE8?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/R.9d4f3f3dd661255637263fa08395e83e?rik=K%2bsD5QwK7f0FaA&pid=ImgRaw&r=0",
   },
   {
     name: "Hip",
     imgUrl:
-      "https://th.bing.com/th/id/OIP.BFrCRK02np5eYRAYHnSjgAHaFw?w=1024&h=796&rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/R.2ac45424e0802727c231d73d16694247?rik=ioK12i3niLDQyw&pid=ImgRaw&r=0",
   },
 ];
 
