@@ -7,8 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "nodemon server",
-    "server": "nodemon server"
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    const db = process.env.MongoURI; // Corrected environment variable name
+    const db = process.env.MONGO_URI; 
     if (!db) {
       throw new Error('MongoDB URI is missing in the environment variables');
     }
