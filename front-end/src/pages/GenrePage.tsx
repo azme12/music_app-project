@@ -29,12 +29,12 @@ const genres: genre[] = [
   {
     name: "Pop",
     imgUrl:
-      "https://th.bing.com/th/id/R.031ca0831248088b4711e87f8839d39c?rik=xwyFAx3Rl79cxA&pid=ImgRaw&r=0",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDPcm3E6e6CamkjWo6rbmlhwNN71GJVecMd9OJ9puXf3TX09jxsh0A1JZHzbejbxxmE40&usqp=CAU",
   },
   {
     name: "Rock",
     imgUrl:
-      "https://th.bing.com/th/id/R.1073733133b0f07f13b3f066b773a7b3?rik=3u0%2b%2fkCFW5tl9A&pid=ImgRaw&r=0",
+      "https://musicday.org.uk/wp-content/uploads/2022/04/rock-band-300x200.jpg",
   },
   {
     name: "R&B",
