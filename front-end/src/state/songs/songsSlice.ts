@@ -1,16 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-
-interface Song {
-  _id: string;
-  title: string;
-  artist: string;
-  album: string;
-  genre: string;
-  coverImageUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import { Song } from '../../types/Song';
 
 interface Songs {
   songs: Song[];
@@ -41,6 +30,18 @@ interface Songs {
 
 const initialState: Songs = {
   songs: [],
+  song: {
+    _id: '',
+    title: '',
+    artist: '',
+    album: '',
+    genre: '',
+    coverImageUrl: '',
+    createdAt: '',
+    updatedAt: '',
+    __v: 0,
+    songUrl: '',
+  },
   songsByGenre: [],
   searchedSong: {
     _id: '',
@@ -52,6 +53,7 @@ const initialState: Songs = {
     createdAt: '',
     updatedAt: '',
     __v: 0,
+    songUrl: '',
   },
   getSongsLoading: true,
   songsByGenreLoading: true,
@@ -125,6 +127,7 @@ const songsSlice = createSlice({
     createSongSuccess: (state, action: PayloadAction<string>) => {
       state.newSongId = action.payload;
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fetchSongById: (state, action: PayloadAction<string>) => {},
     updateSong: (state, action: PayloadAction<Song>) => {
       const index = state.songs.findIndex(

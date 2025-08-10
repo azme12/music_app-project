@@ -1,10 +1,10 @@
-import { css } from "@emotion/react";
 import { Flex, Box, Text } from "rebass";
 import Genre from "../components/Genre";
 
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
+import styled from "@emotion/styled";
 
 type genre = {
   name: string;
@@ -48,31 +48,50 @@ const genres: genre[] = [
   },
 ];
 
+const GenreGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  width: 100%;
+  margin-top: 18px;
+  background: repeating-linear-gradient(135deg, #e0e7ef 0 2px, #f8fafc 2px 32px);
+  border-radius: 18px;
+  padding: 24px 0;
+  position: relative;
+  transition: background 0.7s;
+  &:hover {
+    background: repeating-linear-gradient(120deg, #e94f37 0 2px, #f8fafc 2px 32px);
+  }
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export default function GenrePage() {
-  const genreStyles = css`
-    gap: 12px;
-    flex-wrap: wrap;
-  `;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <Flex flexDirection={"column"}>
+    <Flex flexDirection={"column"} alignItems="flex-start" width="100%">
       <Box>
         <Text fontSize={6} fontWeight="bold" mb={2}>
           Genre
         </Text>
       </Box>
-      <Flex flexDirection={"row"} css={genreStyles.styles}>
-        {genres.map((data, i) => {
-          return (
-            <Link to={data.name} key={i}>
-              <Genre name={data.name} imgUrl={data.imgUrl} />
-            </Link>
-          );
-        })}
-      </Flex>
+      <GenreGrid>
+        {genres.map((data, i) => (
+          <Link to={data.name} key={i} style={{ textDecoration: 'none' }}>
+            <Genre name={data.name} imgUrl={data.imgUrl} />
+          </Link>
+        ))}
+      </GenreGrid>
     </Flex>
   );
 }

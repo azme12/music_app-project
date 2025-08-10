@@ -12,6 +12,7 @@ import React from 'react';
 
 export default function Main() {
   const data = useSelector((state: RootState) => state.songs.songs);
+  const currentSong = useSelector((state: RootState) => state.player.currentSong);
   const MainStyle = css`
     padding: 0px 15px;
     @media screen and (min-width: 768px) {
@@ -29,11 +30,10 @@ export default function Main() {
         </Box>
         <Box flex={4}>
           <NavBar />
-
           <Outlet />
         </Box>
       </Flex>
-      <Player songs={data} />
+      {currentSong && <Player songs={data} />}
     </>
   );
 }

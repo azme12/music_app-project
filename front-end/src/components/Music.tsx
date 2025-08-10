@@ -60,8 +60,6 @@ const Music: React.FC<myComponentProp> = ({
   const [previousPlayingState, setPreviousPlayingState] =
     useState<boolean>(false); // Store the previous playing state
 
-  const [isLoading, setIsLoading] = useState(true);
-
   const [optionIsOpened, setOptionIsOpened] = useState(false);
   const [markedItem, setMarkedItem] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -73,8 +71,18 @@ const Music: React.FC<myComponentProp> = ({
     (state: RootState) => state.songs.showFailedToast
   );
 
-  // to open option
-  const handleOptionClick = (e: any) => {
+  // // to open option
+  // const handleOptionClick = (e: React.MouseEvent<SVGElement>) => {
+  //   e.stopPropagation();
+  //   setOptionIsOpened((prev) => !prev);
+  // };
+
+  // Split handleOptionClick for SVG and div
+  const handleOptionClickSVG = (e: React.MouseEvent<SVGElement>) => {
+    e.stopPropagation();
+    setOptionIsOpened((prev) => !prev);
+  };
+  const handleOptionClickDiv = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     setOptionIsOpened((prev) => !prev);
   };
@@ -88,8 +96,6 @@ const Music: React.FC<myComponentProp> = ({
     setOpenDeleteModal(true);
     setOptionIsOpened(false);
     setMarkedItem(true);
-    // dispatch(setOpenDeleteModal(true))
-    // dispatch(setmarkDeletedItem(true))
   };
 
   const closeModal = () => {
@@ -245,18 +251,15 @@ to {
   `;
 
   function formatDate(date: string): string {
-    const dateObject: Date = new Date(date);
+    if (!date) return '';
+    const dateObject = new Date(date);
+    if (isNaN(dateObject.getTime())) return '';
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     };
-    const formattedDate: string = dateObject.toLocaleDateString(
-      'en-US',
-      options
-    );
-
-    return formattedDate;
+    return dateObject.toLocaleDateString('en-US', options);
   }
 
   const StyledSpan = styled.span`
@@ -277,9 +280,9 @@ to {
       dispatch(playSong());
     }
   };
-  const handleDeleteClick = (_id: string) => {
+  const handleDeleteClick = (_id?: string) => {
+    if (!_id) return;
     navigate(`/editSong/${_id}`);
-    //to={`/editSong/${_id}`}
   };
 
   return (
@@ -308,12 +311,12 @@ to {
                 `}
               >
                 <Button2 onClick={closeModal}>Cancel</Button2>
-                <Button onClick={() => deleteSong(_id)}>Delete</Button>
+                <Button onClick={() => deleteSong(_id!)}>Delete</Button>
               </Flex>
             </ModalContent>
           </Overlay>
         )}
-        <StyledBackGround onClick={handleOptionClick}></StyledBackGround>
+        <StyledBackGround onClick={handleOptionClickDiv}></StyledBackGround>
         <Flex
           flexDirection='row'
           alignItems='center'
@@ -326,7 +329,9 @@ to {
             flex={1.5}
             css={playTitle.styles}
           >
-            <Box ml={2}>{true ? <FaPlay /> : <FaPause />}</Box>
+            <Box ml={2}>
+              {isPlaying && songUrl && currentSong === songUrl ? <FaPause /> : <FaPlay />}
+            </Box>
             <Box>
               <img
                 style={{width: '45px', height: '45px', borderRadius: '5px'}}
@@ -370,7 +375,7 @@ to {
             <Text fontSize={14}>{formatDate(date)}</Text>
           </Box>
           <Box css={StyledOptionContainer.styles}>
-            <StyledOption onClick={handleOptionClick} />
+            <StyledOption onClick={handleOptionClickSVG} />
             {optionIsOpened === true ? (
               <StyledContent onClick={(e) => e.stopPropagation()}>
                 <div
@@ -398,7 +403,7 @@ to {
                   alignItems={'center'}
                   p={2}
                   css={StyledlementsMenuebarContent.styles}
-                  onClick={(e) => openModal(e)}
+                  onClick={() => openModal()}
                 >
                   <Box>
                     <StyledRemoveIcon />

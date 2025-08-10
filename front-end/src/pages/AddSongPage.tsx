@@ -97,6 +97,21 @@ const StyledButton = styled.button`
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 const StyledForm = styled.form``;
+const FormCard = styled(Box)`
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #0002;
+  padding: 38px 36px 32px 36px;
+  max-width: 480px;
+  margin-left: 60px;
+  margin-top: 32px;
+  width: 100%;
+  @media (max-width: 700px) {
+    margin-left: 0;
+    padding: 18px 8px;
+    max-width: 98vw;
+  }
+`;
 interface InputChangeEvent {
   target: {
     name: string;
@@ -105,7 +120,6 @@ interface InputChangeEvent {
 }
 
 function AddSongPage() {
-  const [loading, setLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const navigate = useNavigate();
@@ -196,123 +210,113 @@ function AddSongPage() {
   };
 
   return (<>
-  
     <Flex
       flexDirection={'column'}
-      style={{
-        height: '100vh',
-        overflow: 'auto',
-      }}
+      alignItems='flex-start'
+      style={{ minHeight: '100vh', overflow: 'auto' }}
     >
       {createSongCauseAnError && showErrorMessage && !buttonIsLoading ? (
         <ErrorMessage
           message='Error while adding the song. Please try again.'
           show={setShowErrorMessage}
         />
-      ) : (
-        ''
-      )}
-
-      <Box>
-        <Text fontSize={5} fontWeight='bold' mb={2}>
+      ) : ''}
+      <FormCard>
+        <Text fontSize={5} fontWeight='bold' mb={3} color='#1f3044'>
           Add Song
         </Text>
-      </Box>
-      <StyledForm onSubmit={handleSubmit}>
-        <Flex flexDirection={'column'} css={genreStyles.styles}>
-          <Text fontSize={2} fontWeight='bold' mb={0}>
-            Song Title
-          </Text>
-          <StyledInput
-            required
-            type='text'
-            placeholder='Song Title'
-            name='title'
-            value={formData.title}
-            onChange={handleInputChange}
-          />
-
-          <Text fontSize={2} fontWeight='bold' mb={0}>
-            Artist Name
-          </Text>
-          <StyledInput
-            required
-            type='text'
-            placeholder='Artist Name'
-            name='artist'
-            value={formData.artist}
-            onChange={handleInputChange}
-          />
-
-          <Text fontSize={2} fontWeight='bold' mb={0}>
-            Album Name
-          </Text>
-          <StyledInput
-            required
-            type='text'
-            placeholder='Album Name'
-            name='album'
-            value={formData.album}
-            onChange={handleInputChange}
-          />
-
-          <Text fontSize={2} fontWeight='bold' mb={0}>
-            Upload Audio
-          </Text>
-
-          <StyledInput
-            required
-            type='file'
-            placeholder='Song Audio file'
-            name='postAudio'
-            onChange={handleInputChange}
-          />
-
-          <Text fontSize={2} fontWeight='bold' mb={0}>
-            Select Song Genre
-          </Text>
-          <StyledSelect
-            required
-            name='genre'
-            onChange={handleInputChange}
-            value={formData.genre}
-          >
-            {Categories.map((category, index) => (
-              <StyledOption key={index} value={category}>
-                {category}
-              </StyledOption>
-            ))}
-          </StyledSelect>
-          <StyledButton type='submit' disabled={buttonIsLoading}>
-            {buttonIsLoading ? (
-              <>
+        <StyledForm onSubmit={handleSubmit}>
+          <Flex flexDirection={'column'} sx={{ gap: 3 }}>
+            <Text fontSize={2} fontWeight='bold' mb={1}>
+              Song Title
+            </Text>
+            <StyledInput
+              required
+              type='text'
+              placeholder='Song Title'
+              name='title'
+              value={formData.title}
+              onChange={handleInputChange}
+              style={{ marginBottom: 18 }}
+            />
+            <Text fontSize={2} fontWeight='bold' mb={1}>
+              Artist Name
+            </Text>
+            <StyledInput
+              required
+              type='text'
+              placeholder='Artist Name'
+              name='artist'
+              value={formData.artist}
+              onChange={handleInputChange}
+              style={{ marginBottom: 18 }}
+            />
+            <Text fontSize={2} fontWeight='bold' mb={1}>
+              Album Name
+            </Text>
+            <StyledInput
+              required
+              type='text'
+              placeholder='Album Name'
+              name='album'
+              value={formData.album}
+              onChange={handleInputChange}
+              style={{ marginBottom: 18 }}
+            />
+            <Text fontSize={2} fontWeight='bold' mb={1}>
+              Upload Audio
+            </Text>
+            <StyledInput
+              required
+              type='file'
+              placeholder='Song Audio file'
+              name='postAudio'
+              onChange={handleInputChange}
+              style={{ marginBottom: 18 }}
+            />
+            <Text fontSize={2} fontWeight='bold' mb={1}>
+              Select Song Genre
+            </Text>
+            <StyledSelect
+              required
+              name='genre'
+              onChange={handleInputChange}
+              value={formData.genre}
+              style={{ marginBottom: 24 }}
+            >
+              {Categories.map((category, index) => (
+                <StyledOption key={index} value={category}>
+                  {category}
+                </StyledOption>
+              ))}
+            </StyledSelect>
+            <StyledButton type='submit' disabled={buttonIsLoading} style={{marginTop: 18, fontSize: 20, fontWeight: 600, padding: '14px 0'}}>
+              {buttonIsLoading ? (
+                <>
+                  <Flex
+                    flexDirection={'row'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    css={`height: 30px;`}
+                  >
+                    <Text>Add Song</Text>
+                    <Flex css={spinnerStyles.styles}></Flex>
+                  </Flex>
+                </>
+              ) : (
                 <Flex
                   flexDirection={'row'}
                   alignItems={'center'}
                   justifyContent={'center'}
-                  css={`
-                    height: 30px;
-                  `}
+                  css={`height: 30px;`}
                 >
                   <Text>Add Song</Text>
-                  <Flex css={spinnerStyles.styles}></Flex>
                 </Flex>
-              </>
-            ) : (
-              <Flex
-                flexDirection={'row'}
-                alignItems={'center'}
-                justifyContent={'center'}
-                css={`
-                  height: 30px;
-                `}
-              >
-                <Text>Add Song</Text>
-              </Flex>
-            )}
-          </StyledButton>
-        </Flex>
-      </StyledForm>
+              )}
+            </StyledButton>
+          </Flex>
+        </StyledForm>
+      </FormCard>
     </Flex>
     <Analytics />
     </>
